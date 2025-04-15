@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 interface ProductShape {
@@ -7,9 +8,10 @@ interface ProductShape {
   brand: string;
   price: number;
   category: string;
-  releaseData: number;
+  releaseDate: number;
   available: boolean;
   quantity: number;
+  imageFile: Buffer | null;
 }
 
 export default async function Dashboard() {
@@ -29,7 +31,29 @@ export default async function Dashboard() {
           <h2 className="text-xl">{item.name}</h2>
           <p className="">{item.description}</p>
           <p>{item.brand}</p>
+          <p>
+            {new Date(item.releaseDate).toLocaleString("en-GB", {
+              day: "2-digit",
+              month: "long",
+              year: "numeric",
+            })}
+          </p>
           <p>$ {item.price}</p>
+          {item.available ? (
+            <p>the product is avalible</p>
+          ) : (
+            <p>the product is out of stock</p>
+          )}
+          {item.id ? (
+            <Image
+              src={`http://localhost:8080/api/products/${item.id}/image`}
+              alt="product image"
+              width={200}
+              height={200}
+            />
+          ) : (
+            <p>Image not available</p>
+          )}
         </Link>
       ))}
     </div>
