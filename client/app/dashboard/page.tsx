@@ -28,6 +28,17 @@ export default async function Dashboard() {
           key={item.id}
           href={`product/${item.id}`}
         >
+          {item.id ? (
+            <Image
+              src={`http://localhost:8080/api/products/${item.id}/image`}
+              alt="product image"
+              width={200}
+              height={200}
+            />
+          ) : (
+            <p>Image not available</p>
+          )}
+
           <h2 className="text-xl">{item.name}</h2>
           <p className="">{item.description}</p>
           <p>{item.brand}</p>
@@ -44,16 +55,8 @@ export default async function Dashboard() {
           ) : (
             <p>the product is out of stock</p>
           )}
-          {item.id ? (
-            <Image
-              src={`http://localhost:8080/api/products/${item.id}/image`}
-              alt="product image"
-              width={200}
-              height={200}
-            />
-          ) : (
-            <p>Image not available</p>
-          )}
+
+          <p>quantity of the product:{item.quantity}</p>
         </Link>
       ))}
     </div>
