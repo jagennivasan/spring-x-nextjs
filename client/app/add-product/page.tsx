@@ -4,6 +4,10 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { ProductForm } from "@/lib/validationSchema";
 
+
+
+
+
 export default function AddProduct() {
   const [product, setProduct] = useState<ProductForm>({
     name: "",
@@ -22,7 +26,7 @@ export default function AddProduct() {
 
   const handelFormChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setProduct((preValue) => ({
+    setProduct((preValue:ProductForm) => ({
       ...preValue,
       [name]: value,
     }));
@@ -162,7 +166,7 @@ export default function AddProduct() {
           name="available"
           checked={product.available}
           onChange={(e) =>
-            setProduct((prev) => ({
+            setProduct((prev:ProductForm) => ({
               ...prev,
               available: e.target.checked,
             }))
