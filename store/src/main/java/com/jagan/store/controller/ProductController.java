@@ -25,7 +25,7 @@ public class ProductController {
 
     @RequestMapping("/")
     public String Welcome() {
-        return "Welcome Spring come";
+        return "Welcome Spring";
     }
 
     @RequestMapping("/products")
