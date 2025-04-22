@@ -66,7 +66,7 @@ public class ProductController {
         Product product = service.getProductById(productId);
         byte[] imageFile = product.getImageData();
         return ResponseEntity.ok()
-                .contentType(MediaType.valueOf(product.getImageType())) // e.g., image/png
+//                .contentType(MediaType.valueOf(product.getImageType())) // e.g., image/png
                 .body(imageFile);
     }
 
